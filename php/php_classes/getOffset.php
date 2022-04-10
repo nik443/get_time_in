@@ -26,7 +26,8 @@ class getOffset {
         while (($row = $stmt->fetch(PDO::FETCH_LAZY)) != false) {
             $this->offset = $row['offset_from_GMT'];
         }
-        return $this->offset;
+        $time_in_city = gmdate('Y-m-d H:i:s', time() + $this->offset * 3600);
+        return 'Время в ' . $this->city_in_db . ': ' . $time_in_city;
     }
 
 }
